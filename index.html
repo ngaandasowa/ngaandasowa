@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Ngaavongwe Ndasowampange, a skilled web developer proficient in JavaScript, PHP, C#, and more. Explore my projects and learn more about my skills and experience.">
-    <meta name="keywords" content="Ngaavongwe Ndasowampange, web developer, portfolio, JavaScript, PHP, C#, React, WordPress, software development, programming">
-    <meta name="author" content="Ngaavongwe Ndasowampange">
-    <meta property="og:title" content="Ngaavongwe Ndasowampange's Portfolio">
-    <meta property="og:description" content="Explore the portfolio of Ngaavongwe Ndasowampange, showcasing web development skills, projects, and experience.">
-    <meta property="og:image" content="Ngaavongwe Ndasowampange.png">
-    <meta property="og:type" content="website">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Ngaavongwe Ndasowampange's Portfolio">
-    <meta property="twitter:description" content="Explore the portfolio of Ngaavongwe Ndasowampange, showcasing web development skills, projects, and experience.">
-    <meta property="twitter:image" content="Ngaavongwe Ndasowampange.png">
-    <title>Ngaavongwe Ndasowampange's Portfolio</title>
-    <link rel="icon" href="Ngaavongwe Ndasowampange.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-  
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Ngaavongwe Ndasowampange, a skilled web developer proficient in JavaScript, PHP, C#, and more. Explore my projects and learn more about my skills and experience.">
+  <meta name="keywords" content="Ngaavongwe Ndasowampange, web developer, portfolio, JavaScript, PHP, C#, React, WordPress, software development, programming">
+  <meta name="author" content="Ngaavongwe Ndasowampange">
+  <meta property="og:title" content="Ngaavongwe Ndasowampange's Portfolio">
+  <meta property="og:description" content="Explore the portfolio of Ngaavongwe Ndasowampange, showcasing web development skills, projects, and experience.">
+  <meta property="og:image" content="Ngaavongwe Ndasowampange.png">
+  <meta property="og:type" content="website">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Ngaavongwe Ndasowampange's Portfolio">
+  <meta property="twitter:description" content="Explore the portfolio of Ngaavongwe Ndasowampange, showcasing web development skills, projects, and experience.">
+  <meta property="twitter:image" content="Ngaavongwe Ndasowampange.png">
+  <title>Ngaavongwe Ndasowampange's Portfolio</title>
+  <link rel="icon" href="Ngaavongwe Ndasowampange.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
     body, html {
       font-family: 'Tw Cen MT';
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       scroll-behavior: smooth;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
     .card {
       transform: translateY(50px);
@@ -47,34 +54,26 @@
     }
     .project-image {
       width: 100%;
-      height: auto;
+      height: 200px;
+      object-fit: cover;
       border-radius: 10px;
       margin-bottom: 15px;
     }
     .hero {
       height: 100vh;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       overflow: hidden;
     }
-    .hero-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
     .hero-content {
       z-index: 2;
       color: #ffffff;
     }
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid #ffffff;
@@ -96,12 +95,11 @@
       overflow: hidden;
       border: none;
       cursor: pointer;
-      background-color: transparent;
+      background-color: #3b82f6;
       border-radius: 30px;
       transition: all 0.3s ease;
     }
     .hire-me-button span {
-      display: block;
       position: relative;
       z-index: 2;
     }
@@ -110,7 +108,7 @@
       position: absolute;
       width: 300%;
       height: 300%;
-      background: #3b82f6;
+      background: #1d4ed8;
       top: -100%;
       left: -100%;
       z-index: 1;
@@ -133,11 +131,6 @@
     .resume-button:hover {
       background-color: #2563eb;
     }
-    .project-image {
-      width: 100%;
-      height: 200px; 
-      object-fit: cover; 
-    }
     .about-skills {
       opacity: 0;
       transition: opacity 0.5s ease;
@@ -145,56 +138,23 @@
     .about-skills.visible {
       opacity: 1;
     }
-   
-  #whatsapp-chat {
-    background-color: rgba(255, 255, 255, 0.1); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  #whatsapp-chat:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  #whatsapp-chat {
-    animation: pulse 2s infinite;
-    z-index: 1000;
-  }
-
   </style>
 </head>
 <body class="bg-gray-900 text-white">
 
-<a id="whatsapp-chat" href="https://wa.me/+263783827570" rel="noopener noreferrer" target="_blank" class="fixed top-4 right-4 p-4 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300 ease-in-out z-50 border-4 border-white hover:shadow-xl hover:animate-pulse">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15a4.5 4.5 0 0 0-4.5-4.5h-1.5v-1.5A4.5 4.5 0 0 0 12 5.5V4.5a4.5 4.5 0 0 0-4.5 4.5V9h-1.5A4.5 4.5 0 0 0 2 15a4.5 4.5 0 0 0 4.5 4.5h1.5v1.5a4.5 4.5 0 0 0 4.5 4.5 4.5 4.5 0 0 0 4.5-4.5v-1.5h1.5A4.5 4.5 0 0 0 21 15z"/>
-  </svg>
-</a>
-  
+  <canvas id="bg-canvas"></canvas>
+
+  <a id="whatsapp-chat" href="https://wa.me/+263783827570" rel="noopener noreferrer" target="_blank" class="fixed top-4 right-4 p-2 bg-#1a1a1a-600 text-white rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300 ease-in-out z-50 border-4 border-white hover:shadow-xl">
+    <i class="fab fa-whatsapp fa-2x"></i>
+  </a>
+
   <section class="hero">
-    <canvas class="hero-canvas"></canvas>
     <div class="hero-content">
       <img src="Ngaavongwe Ndasowampange.png" alt="Ngaavongwe Ndasowampange" class="profile-pic mx-auto">
       <h1 class="text-5xl font-bold">Ngaavongwe Ndasowampange</h1>
       <p class="text-xl mt-4">Web Developer</p>
       <div class="button-container">
-        <button href="mailto:ngaandasowa@gmail.com" class="hire-me-button"><span>Hire Me</span></button>
+        <button class="hire-me-button" onclick="location.href='mailto:ngaandasowa@gmail.com'"><span>Hire Me</span></button>
         <a href="Ngaavongwe Ndasowampange Web Developer Resume.pdf" class="resume-button" download>My Resume</a>
       </div>
     </div>
@@ -215,24 +175,30 @@
     </section>
 
     <section id="projects" class="my-10">
-      <h2 class="text-3xl font-semibold">My Projects</h2>
+      <h2 class="text-3xl font-semibold">Client Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        <div class="bg-gray-800 p-4 rounded card">
+          <img src="RaychitsLandingPage.jpeg" alt="Raychits Investments" class="project-image w-full h-48 object-cover">
+          <h3 class="text-xl font-semibold">Website of Raychits Investments</h3>
+          <p class="mt-2">Initial stages of developing a WordPress website for Raychits Investments, with a focus on creating a professional online presence. Project is currently in its early stages, with more features and functionality to be added.</p>
+          <a href="https://raychitsinvestments.co.zw" class="text-blue-400 mt-4 inline-block">View Project</a>
+        </div>
+      </div>
+      </section>
+
+    <section id="projects" class="my-10">
+      <h2 class="text-3xl font-semibold">Personal Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         <div class="bg-gray-800 p-4 rounded card">
           <img src="CircuitCureLandingPage.jpeg" alt="CircuitCure" class="project-image w-full h-48 object-cover">
           <h3 class="text-xl font-semibold">CircuitCure</h3>
-          <p class="mt-2">A computer repair helper app, still working on it for improvement. Technology used, ReactJs</p>
+          <p class="mt-2">Currently developing a responsive web application using React Js, with a focus on creating a modern and intuitive user interface. This project is still in progress, but demonstrates my skills in React Js and front-end development.</p>
           <a href="https://circuitcure-01.web.app" class="text-blue-400 mt-4 inline-block">View Project</a>
-        </div>
-        <div class="bg-gray-800 p-4 rounded card">
-          <img src="RaychitsLandingPage.jpeg" alt="Raychits Investments" class="project-image w-full h-48 object-cover">
-          <h3 class="text-xl font-semibold">Website of Raychits Investments</h3>
-          <p class="mt-2">Designed with WordPress, still working on it. Not yet at a better position.</p>
-          <a href="https://raychitsinvestments.co.zw" class="text-blue-400 mt-4 inline-block">View Project</a>
         </div>
         <div class="bg-gray-800 p-4 rounded card">
           <img src="NgaatecLandingPage.jpeg" alt="Ngaatec Private Limited" class="project-image w-full h-48 object-cover">
           <h3 class="text-xl font-semibold">Website of Ngaatec Private Limited</h3>
-          <p class="mt-2">Designed with WordPress. Continuous improvement is done from time to time.</p>
+          <p class="mt-2">Continuously developing and improving a robust and user-friendly WordPress website, highlighting my services and products. Utilized WordPress's flexibility to create a customized solution, including theme development, plugin integration, and content management.</p>
           <a href="https://ngaatec.co.zw" class="text-blue-400 mt-4 inline-block">View Project</a>
         </div>
       </div>        
