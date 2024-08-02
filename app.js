@@ -64,8 +64,8 @@ canvas.addEventListener('click', e => {
     const dy = p.y - e.clientY;
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance < 100) {
-      p.size = Math.random() * 8 + 3; // Make particles larger when clicked
-      p.color = `rgba(255, 255, 255, 1)`; // Make particles fully opaque
+      p.size = Math.random() * 8 + 3; 
+      p.color = `rgba(255, 255, 255, 1)`; 
       p.bubbles = true;
     }
   });
@@ -75,7 +75,6 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 animateParticles();
 
-// Card Reveal Animation
 const cards = document.querySelectorAll('.card');
 
 function revealOnScroll() {
@@ -92,7 +91,6 @@ function revealOnScroll() {
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
-// Interactive "Hire Me" Button
 const hireMeButton = document.querySelector('.hire-me-button');
 
 hireMeButton.addEventListener('mouseover', () => {
@@ -118,4 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
       aboutSkillsSection.classList.remove('visible');
     }
   });
+});
+
+document.querySelector('#down-arrow').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
 });
