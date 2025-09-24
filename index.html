@@ -17,39 +17,41 @@
   <title>Ngaavongwe Ndasowampange's Portfolio</title>
   <link rel="icon" href="Ngaavongwe Ndasowampange.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     body, html {
-      font-family: 'Tw Cen MT';
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
+    
     .down-arrow-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-.down-arrow {
-  display: inline-block;
-  color: #fff;
-  animation: bounce 2s infinite;
-}
+    .down-arrow {
+      display: inline-block;
+      color: #fff;
+      animation: bounce 2s infinite;
+    }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
     canvas {
       position: fixed;
       top: 0;
@@ -59,6 +61,7 @@
       pointer-events: none;
       z-index: -1;
     }
+    
     .card {
       transform: translateY(50px);
       opacity: 0;
@@ -67,22 +70,33 @@
       backdrop-filter: blur(10px);
       border-radius: 15px;
       padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .card.visible {
       transform: translateY(0);
       opacity: 1;
     }
+    
     .card:hover {
-      transform: scale(1.05);
-      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    
     .project-image {
       width: 100%;
-      height: 200px;
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 15px;
+      transition: transform 0.3s ease;
     }
+    
+    .card:hover .project-image {
+      transform: scale(1.03);
+    }
+    
     .hero {
       height: 100vh;
       display: flex;
@@ -91,10 +105,12 @@
       text-align: center;
       overflow: hidden;
     }
+    
     .hero-content {
       z-index: 2;
       color: #ffffff;
     }
+    
     .profile-pic {
       width: 200px;
       height: 200px;
@@ -102,65 +118,195 @@
       object-fit: cover;
       border: 4px solid #ffffff;
       margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
+    
     .button-container {
       margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
-    .hire-me-button {
+    
+    /* Modern Button Styles */
+    .btn {
       position: relative;
-      display: inline-block;
-      padding: 15px 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
       font-size: 16px;
-      color: #fff;
+      font-weight: 600;
       text-transform: uppercase;
-      overflow: hidden;
       border: none;
       cursor: pointer;
-      background-color: #3b82f6;
-      border-radius: 30px;
+      border-radius: 50px;
       transition: all 0.3s ease;
+      overflow: hidden;
+      text-decoration: none;
+      gap: 8px;
     }
-    .hire-me-button span {
-      position: relative;
-      z-index: 2;
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
-    .hire-me-button::before {
-      content: '';
-      position: absolute;
-      width: 300%;
-      height: 300%;
-      background: #1d4ed8;
-      top: -100%;
-      left: -100%;
-      z-index: 1;
-      transition: transform 0.5s ease;
-      clip-path: polygon(0 0, 50% 100%, 100% 0);
+    
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
     }
-    .hire-me-button:hover::before {
-      transform: scale(0.33);
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
     }
-    .resume-button {
-      padding: 15px 20px;
-      background-color: #3b82f6;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: background-color 0.3s;
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-project {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
       border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
     }
-    .resume-button:hover {
-      background-color: #2563eb;
+    
+    .btn-project:hover {
+      background: #3b82f6;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
+    
     .about-skills {
       opacity: 0;
       transition: opacity 0.5s ease;
     }
+    
     .about-skills.visible {
       opacity: 1;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #3b82f6;
+      border-radius: 3px;
+    }
+    
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.3s ease;
+      margin: 0 5px;
+    }
+    
+    .social-icon:hover {
+      background: #3b82f6;
+      transform: translateY(-3px);
+    }
+    
+    /* Floating action buttons */
+    .floating-btn {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 50;
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+    
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .whatsapp-btn {
+      top: 20px;
+      right: 20px;
+      background: #25D366;
+    }
+    
+    .linkedin-btn {
+      top: 20px;
+      left: 20px;
+      background: #0077B5;
+    }
+    
+    /* Skill tags */
+    .skill-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 20px;
+      font-size: 14px;
+      margin: 5px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-btn {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .linkedin-btn {
+        top: 10px;
+        left: 10px;
+      }
     }
   </style>
 </head>
@@ -168,91 +314,278 @@
 
   <canvas id="bg-canvas"></canvas>
 
-  <a id="whatsapp-chat" href="https://wa.me/+263783827570" rel="noopener noreferrer" target="_blank" class="fixed top-4 right-4 p-2 bg-#1a1a1a-600 text-white box-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300 ease-in-out z-50 border-2 border-white hover:shadow-xl">
-    <i class="fab fa-whatsapp fa-2x"></i>
+  <a href="https://wa.me/+263783827570" rel="noopener noreferrer" target="_blank" class="floating-btn whatsapp-btn">
+    <i class="fab fa-whatsapp fa-lg"></i>
   </a>
-  <a id="whatsapp-chat" href="https://www.linkedin.com/in/ngaandasowa" rel="noopener noreferrer" target="_blank" class="fixed top-4 left-4 p-2 bg-#1a1a1a-600 text-white box-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300 ease-in-out z-50 border-2 border-white hover:shadow-xl">
-    <i class="fab fa-linkedin fa-2x"></i>
+  
+  <a href="https://www.linkedin.com/in/ngaandasowa" rel="noopener noreferrer" target="_blank" class="floating-btn linkedin-btn">
+    <i class="fab fa-linkedin fa-lg"></i>
   </a>
 
   <section class="hero">
     <div class="hero-content">
       <img src="Ngaavongwe Ndasowampange.png" alt="Ngaavongwe Ndasowampange" class="profile-pic mx-auto">
-      <h1 class="text-5xl font-bold">Ngaavongwe Ndasowampange</h1>
-      <p class="text-xl mt-4">Web Developer</p>
+      <h1 class="text-5xl font-bold mb-2">Ngaavongwe Ndasowampange</h1>
+      <p class="text-xl mb-6">Web Developer</p>
       <div class="button-container">
-        <button class="hire-me-button" onclick="location.href='mailto:ngaandasowa@gmail.com'"><span>Hire Me</span></button>
-        <a href="Ngaavongwe Ndasowampange Web Developer Resume.pdf" class="resume-button" download>My Resume</a>
+        <button class="btn btn-primary" onclick="location.href='mailto:ngaandasowa@gmail.com'">
+          <i class="fas fa-paper-plane"></i>
+          <span>Hire Me</span>
+        </button>
+        <a href="Ngaavongwe Ndasowampange Resume.pdf" class="btn btn-secondary" download>
+          <i class="fas fa-download"></i>
+          <span>My Resume</span>
+        </a>
       </div>
     </div>
     <div class="down-arrow-container">
-  <a href="#about" class="down-arrow" id="down-arrow">
-    <i class="fas fa-chevron-down fa-2x"></i>
-  </a>
-</div>
+      <a href="#about" class="down-arrow" id="down-arrow">
+        <i class="fas fa-chevron-down fa-2x"></i>
+      </a>
+    </div>
   </section>
 
-  <main id="about" class="p-6">
-    <section class="my-10">
-      <div class="flex flex-col md:flex-row">
-        <div class="card flex-1 mx-2 mb-4 md:mb-0">
-          <h2  class="text-3xl font-semibold">About Me</h2>
-          <p class="mt-4">I am a web developer with a passion for learning and improvement. I bring a logical and analytical approach to my work, always looking for ways to optimize and refine my solutions. Let's collaborate and create something amazing!</p>
+  <main id="about" class="p-6 max-w-6xl mx-auto">
+    <section class="my-16">
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="card flex-1">
+          <h2 class="section-title text-3xl font-semibold">About Me</h2>
+          <p class="mt-4">I am a web developer driven by curiosity and a commitment to continuous growth. 
+    I enjoy tackling challenges with a logical, problem-solving mindset and believe in 
+    building applications that are both practical and user-friendly. 
+    Collaboration and learning from others are at the heart of how I work.</p>
         </div>
-        <div class="card flex-1 mx-2 about-skills">
-          <h2 class="text-3xl font-semibold">Skills</h2>
-          <p class="mt-4">Self-taught in web development with proficiency in JavaScript, PHP, C#, C++, and C through Giraffe Academy tutorials, plus experience with WordPress and currently learning React Js, with a strong foundation in problem-solving and self-directed learning.</p>
+        <div class="card flex-1 about-skills">
+          <h2 class="section-title text-3xl font-semibold">Skills</h2>
+          <p class="mt-4 mb-6">Experienced in JavaScript, PHP, and WordPress, with a solid foundation in C, C++, 
+    and C#. Currently expanding my expertise with React.js and Next.js. 
+    Skilled at creating responsive, user-focused web applications.</p>
+          <div>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">WordPress</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">TailwindCSS</span>
+            <span class="skill-tag">Html</span>
+            <span class="skill-tag">CSS</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="my-10">
-      <h2 class="text-3xl font-semibold">Client Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-        <div class="bg-gray-800 p-4 rounded card">
-          <img src="RaychitsLandingPage.jpeg" alt="Raychits Investments" class="project-image w-full h-48 object-cover">
-          <h3 class="text-xl font-semibold">Website of Raychits Investments</h3>
-          <p class="mt-2">Initial stages of developing a WordPress website for Raychits Investments, with a focus on creating a professional online presence. Project is currently in its early stages, with more features and functionality to be added.</p>
-          <a href="https://raychitsinvestments.co.zw" class="text-blue-400 mt-4 inline-block">View Project</a>
+    <section id="projects" class="my-16">
+      <h2 class="section-title text-3xl font-semibold">Client Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div class="card">
+          <img src="shipify.png" alt="Shipify International" class="project-image">
+          <h3 class="text-xl font-semibold">Shipify International</h3>
+          <p class="mt-2">Modern redesign of this company's online presence, offering detailed insights into services and a platform for clients to reach out effortlessly.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: Next.js (TypeScript), TailwindCSS</p>
+          <a href="https://shipifyinternational.co.zw" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
+        </div>
+
+        <div class="card">
+          <img src="britvish.png" alt="Britvish Incorporated" class="project-image">
+          <h3 class="text-xl font-semibold">Britvish Incorporated</h3>
+          <p class="mt-2">Continuously developing and improving a robust WordPress website, highlighting services and products with customized solutions.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: WordPress, Custom Theme</p>
+          <a href="https://britvish.co.zw" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
+        </div>
+
+        <div class="card">
+          <img src="codets.png" alt="CodeVerge Technical Solutions" class="project-image">
+          <h3 class="text-xl font-semibold">CodeVerge Technical Solutions</h3>
+          <p class="mt-2">Modern redesign offering detailed insights into services and a platform for clients to reach out effortlessly.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: Next.js (TypeScript), TailwindCSS</p>
+          <a href="https://codets.co.zw" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
         </div>
       </div>
-      </section>
+    </section>
 
-    <section id="projects" class="my-10">
-      <h2 class="text-3xl font-semibold">Personal Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-        <div class="bg-gray-800 p-4 rounded card">
-          <img src="CircuitCureLandingPage.jpeg" alt="CircuitCure" class="project-image w-full h-48 object-cover">
+    <section id="personal-projects" class="my-16">
+      <h2 class="section-title text-3xl font-semibold">Personal Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div class="card">
+          <img src="circuitcure.png" alt="CircuitCure" class="project-image">
           <h3 class="text-xl font-semibold">CircuitCure</h3>
-          <p class="mt-2">Currently developing a responsive web application using React Js, with a focus on creating a modern and intuitive user interface. This project is still in progress, but demonstrates my skills in React Js and front-end development.</p>
-          <a href="https://circuitcure-01.web.app" class="text-blue-400 mt-4 inline-block">View Project</a>
+          <p class="mt-2">Developing a responsive web application using React Js, with a focus on creating a modern and intuitive user interface.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: React.js, Modern UI</p>
+          <a href="https://circuitcure.com" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
         </div>
-        <div class="bg-gray-800 p-4 rounded card">
-          <img src="NgaatecLandingPage.jpeg" alt="Ngaatec Private Limited" class="project-image w-full h-48 object-cover">
-          <h3 class="text-xl font-semibold">Website of Ngaatec Private Limited</h3>
-          <p class="mt-2">Continuously developing and improving a robust and user-friendly WordPress website, highlighting my services and products. Utilized WordPress's flexibility to create a customized solution, including theme development, plugin integration, and content management.</p>
-          <a href="https://ngaatec.co.zw" class="text-blue-400 mt-4 inline-block">View Project</a>
+
+        <div class="card">
+          <img src="therawel.png" alt="Therawel" class="project-image">
+          <h3 class="text-xl font-semibold">Therawel</h3>
+          <p class="mt-2">Comprehensive Web App designed to nurture mental, physical, and maternal health with culturally relevant support in Zimbabwe.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: AI Integration, Web App</p>
+          <a href="https://therawel.co.zw" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
+        </div>
+
+        <div class="card">
+          <img src="ngaatec.png" alt="Ngaatec" class="project-image">
+          <h3 class="text-xl font-semibold">Ngaatec Private Limited</h3>
+          <p class="mt-2">Modern redesign of our company's online presence, offering detailed insights into services and client engagement platform.</p>
+          <p class="text-sm text-gray-300 mt-2">Tech: Next.js (TypeScript), TailwindCSS</p>
+          <a href="https://ngaatec.co.zw" class="btn-project">
+            <i class="fas fa-external-link-alt mr-2"></i> View Project
+          </a>
         </div>
       </div>        
     </section>
 
-    <section id="contact" class="my-10">
-      <div class="card">
-        <h2 class="text-3xl font-semibold">Contact</h2>
-        <p class="mt-4">You can reach me at <a href="mailto:ngaandasowa@gmail.com" class="text-blue-400">ngaandasowa@gmail.com</a></p>
+    <section id="contact" class="my-16">
+      <div class="card text-center">
+        <h2 class="section-title text-3xl font-semibold mx-auto">Contact</h2>
+        <p class="mt-4 text-lg">Let's work together to bring your ideas to life</p>
+        <p class="mt-2">Reach me at <a href="mailto:ngaandasowa@gmail.com" class="text-blue-400 font-medium">ngaandasowa@gmail.com</a></p>
+        <div class="mt-6">
+          <a href="mailto:ngaandasowa@gmail.com" class="btn btn-primary inline-flex">
+            <i class="fas fa-envelope mr-2"></i> Send Message
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="p-6 text-center">
-    <p>&copy; 2024 Ngaavongwe Ndasowampange. All rights reserved.</p>
+  <footer class="p-6 text-center border-t border-gray-800 mt-10">
+    <p>&copy; <span id="year"></span> Ngaavongwe Ndasowampange. All rights reserved.</p>
+
     <div class="mt-4">
-      <a href="https://github.com/ngaandasowa" class="text-gray-400 mx-2"><i class="fab fa-github"></i></a>
-      <a href="https://x.com/ngaatec" class="text-gray-400 mx-2"><i class="fab fa-x"></i></a>
-      <a href="https://www.linkedin.com/in/ngaandasowa" class="text-gray-400 mx-2"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/ngaandasowa" class="social-icon">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://x.com/ngaatec" class="social-icon">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/ngaandasowa" class="social-icon">
+        <i class="fab fa-linkedin"></i>
+      </a>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    const canvas = document.querySelector('#bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = generateParticles();
+    }
+
+    function generateParticles() {
+      return Array.from({ length: 100 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 5 + 1,
+        directionX: Math.random() * 0.5 - 0.25,
+        directionY: Math.random() * 0.5 - 0.25,
+        color: `rgba(255, 255, 255, ${Math.random()})`,
+        bubbles: false
+      }));
+    }
+
+    function moveParticles() {
+      particles.forEach(p => {
+        p.x += p.directionX;
+        p.y += p.directionY;
+
+        if (p.x < 0 || p.x > canvas.width) p.directionX = -p.directionX;
+        if (p.y < 0 || p.y > canvas.height) p.directionY = -p.directionY;
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+    }
+
+    function animateParticles() {
+      moveParticles();
+      drawParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    canvas.addEventListener('mousemove', e => {
+      particles.forEach(p => {
+        const dx = p.x - e.clientX;
+        const dy = p.y - e.clientY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100) {
+          p.directionX = (p.x - e.clientX) / distance;
+          p.directionY = (p.y - e.clientY) / distance;
+        }
+      });
+    });
+
+    canvas.addEventListener('click', e => {
+      particles.forEach(p => {
+        const dx = p.x - e.clientX;
+        const dy = p.y - e.clientY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100) {
+          p.size = Math.random() * 8 + 3; 
+          p.color = `rgba(255, 255, 255, 1)`; 
+          p.bubbles = true;
+        }
+      });
+    });
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animateParticles();
+
+    const cards = document.querySelectorAll('.card');
+
+    function revealOnScroll() {
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+          card.classList.add('visible');
+        } else {
+          card.classList.remove('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    document.querySelector('#down-arrow').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Add smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
